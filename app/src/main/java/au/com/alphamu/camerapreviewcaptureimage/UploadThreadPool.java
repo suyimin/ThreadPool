@@ -13,7 +13,7 @@ public class UploadThreadPool {
     private ThreadPoolExecutor mThreadPoolExec;
     private static final int MAX_POOL_SIZE = 4;
     private static final int KEEP_ALIVE = 10;
-    BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>();
+    private static final BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>();
 
     public static synchronized void post(Runnable runnable) {
         if (mInstance == null) {
