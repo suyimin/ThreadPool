@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
 public class UploadThreadPool {
     private static UploadThreadPool mInstance;
     private ThreadPoolExecutor mThreadPoolExec;
-    private static final int MAX_POOL_SIZE = 4;
+    private static int MAX_POOL_SIZE;
     private static final int KEEP_ALIVE = 10;
     private static final BlockingQueue<Runnable> workQueue = new LinkedBlockingQueue<>();
 
@@ -24,6 +24,7 @@ public class UploadThreadPool {
 
     private UploadThreadPool() {
         int coreNum = Runtime.getRuntime().availableProcessors();
+        MAX_POOL_SIZE = coreNum * 2;
         mThreadPoolExec = new ThreadPoolExecutor(
                 coreNum,
                 MAX_POOL_SIZE,
